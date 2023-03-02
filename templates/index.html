@@ -9,7 +9,7 @@
     <ul>
         <li style="font-size:20px; font-weight:bold;">Select Date and Time</li>
     </ul>
-    <form action="{{ url_for('predict')}}"method="post">
+    <form action="{{ url_for('predict') }}"method="post">
         <span><span style="font-weight:bold; margin:20px;">Year(2015-2020):<input style="width:80px;" type="number"
                     placeholder="Year" /></span>
             <p> <span style="font-weight:bold; padding-left: 20px;">Month:</span><input style="width:80px;" type="month"
@@ -32,17 +32,28 @@
         <ul>
             <li style="font-size:20px; font-weight:bold;">Select a Profile type and its parametsrs:</li>
         </ul>
-        <input style="width:180px; margin-left: 20px;" type="height" placeholder="Height,km [60.-2000.]" /><span
+        <select name="profile" size="1" style="margin-left: 30px;">
+            <option  selected="" value="1">Height,km [ 60. - 2000.]
+            </option><option value="2">Latitude, deg.[-90. - 90.]
+            </option><option value="3">Longitude, deg.[0. - 360.]
+            </option><option value="4">Year [1958-$stop_y]
+            </option><option value="5">Month [1-12]
+            </option><option value="6">Day of month[1-31]
+            </option><option value="7">Day of Year[1-366]
+            </option><option value="8">Hour profile[0.-24.]
+            </option></select>
+            <span 
             style="padding-left:15px;">Start<input style="width:180px; margin-left: 20px;" type="number"
                 placeholder="start" /></span><span style="padding-left:15px;">stop<input
                 style="width:180px; margin-left: 20px;" type="number" placeholder="stop" /></span><span
             style="padding-left:15px;">Stepsize<input style="width:180px; margin-left: 20px;" type="height"
                 placeholder="stepsize" /></p>
-            <button type="button" style="margin-left:20px; width:100px; height: 40px; font-size:18px;">Submit</button><button
-                style="width:100px; margin-left:20px;height: 40px; font-size:18px;">Reset</button>
+                <button style="width:100px; margin-left:20px;height: 40px; font-size:18px;"><a href="/predict"></a>predict</button>
+                <button style="width:100px; margin-left:20px;height: 40px; font-size:18px;">Reset</button>
     </form>
-
-    {{ prediction_text }}
+    <br/><br/>
+    <span style="margin-left: 15px;"> {{ prediction_text }}</span>
+   
 </body>
 
 </html>

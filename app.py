@@ -1,8 +1,7 @@
 from flask import Flask, render_template, url_for, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import pickle
-import random
+import pickle, random, time
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
