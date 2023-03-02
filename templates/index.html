@@ -9,7 +9,7 @@
     <ul>
         <li style="font-size:20px; font-weight:bold;">Select Date and Time</li>
     </ul>
-    <form>
+    <form action="{{ url_for('predict')}}"method="post">
         <span><span style="font-weight:bold; margin:20px;">Year(2015-2020):<input style="width:80px;" type="number"
                     placeholder="Year" /></span>
             <p> <span style="font-weight:bold; padding-left: 20px;">Month:</span><input style="width:80px;" type="month"
