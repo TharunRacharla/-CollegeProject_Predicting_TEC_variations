@@ -2,6 +2,9 @@ import pickle
 import random
 import pandas as pd
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
 
 tec_data = pd.read_csv('model\data_to_kaggle.csv')
 
@@ -19,3 +22,20 @@ with open("TEC_model.pkl", "rb") as file:
 prediction = current_model.predict(y_test) # Passing in variables for prediction
 inputval = random.randint(0, 401)
 print("The result is",prediction[inputval]) # Printing result
+def predictor():
+    inputval = random.randint(0, 401)
+    return prediction[inputval]
+output2 = pd.Series([], dtype='object')
+abc = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+for i in abc:
+    output2[i] = predictor()
+print(output2)
+fig, ax = plt.subplots()
+output2.plot.line()
+tmpfile = BytesIO()
+fig.savefig(tmpfile, format='png')
+encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
+prediction_output =  '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title></head><body>'+ '<img src=\'data:image/png;base64,{}\'>'.format(encoded) + '</body></html>'
+
+with open('test.html','w') as f:
+    f.write(prediction_output)
